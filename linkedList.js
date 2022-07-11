@@ -31,18 +31,42 @@ class LinkedList {
       return this;
     }
   }
+
+  delete(value) {
+    let deletedNode = null;
+    while(this.head && this.head.value === value) {
+      deletedNode = this.head;
+      this.head = this.head.next;
+    }
+    let current = this.head;
+    if(current) {
+      while(current.next) {
+        if(current.next.value === value) {
+          deletedNode = current.next;
+          current.next = current.next.next;
+        } else {
+          current = current.next;
+        }
+      }
+    }
+    if (this.tail && this.tail.value === value) {
+      this.tail = current;
+    }
+    return deletedNode;
+  }
 }
 
-// let n = new LinkedList();
-// n.prepend(5);
-// n.prepend(6);
-// n.append(7);
-// n.append(8);
+let n = new LinkedList();
+n.prepend(5);
+n.prepend(6);
+n.append(7);
+n.append(8);
+// n.delete(7);
 // let temp = n.head;
 // while(temp) {
 //   console.log(temp.value);
 //   temp = temp.next;
 // }
 
-// console.log(n);
+console.log(n.delete(7));
 
