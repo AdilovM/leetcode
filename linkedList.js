@@ -54,19 +54,31 @@ class LinkedList {
     }
     return deletedNode;
   }
+
+  find(value) {
+    let current = this.head;
+    if(current) {
+      while(current) {
+        if(value !== undefined && current.value === value) {
+          return current;
+        }
+        current = current.next;
+      }
+    }
+    return null;
+  }
 }
 
-let n = new LinkedList();
-n.prepend(5);
-n.prepend(6);
-n.append(7);
-n.append(8);
-// n.delete(7);
+// let n = new LinkedList();
+// n.prepend(5);
+// n.prepend(6);
+// n.append(7);
+// n.append(8);
+// // n.delete(7);
 // let temp = n.head;
 // while(temp) {
 //   console.log(temp.value);
 //   temp = temp.next;
 // }
-
-console.log(n.delete(7));
+// console.log(n.find(7));
 
