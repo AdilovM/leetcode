@@ -82,4 +82,60 @@ class LinkedList {
     // return OG tail
     return deletedNode;
   }
+
+  deleteHead(){
+    if(!this.head) {
+      return null;
+    }
+    let deletedHead = this.head;
+    if(this.head.next) {
+      this.head = this.head.next;
+    } else {
+      this.head = null;
+      this.tail = null;
+    }
+
+    return deletedHead;
+  }
+
+  fromArray(values) {
+    values.forEach(value => this.append(value));
+    return this;
+  }
+
+  toArray(){
+    let nodes = [];
+    if(!this.head) {
+      return nodes;
+    } else {
+      let current = this.head;
+      while(current) {
+        nodes.push(current);
+        current = current.next;
+      }
+      return nodes;
+    }
+    return nodes;
+  }
+
+  toString(cb) {
+    return this.toArray().map(node => node.toString(cb)).toString();
+  }
+
+  reverse(){
+    let current = this.head;
+    let previousNode = null;
+    let nextNode = null;
+
+    while(current) {
+      nextNode = current.next;
+      current.next = previousNode;
+      previousNode = current;
+      current = nextNode;
+      this.head = this.tail;
+      this.head = previousNode;
+
+      return this;
+    }
+  }
 }
