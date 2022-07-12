@@ -81,4 +81,5 @@ class LinkedList {
     this.tail = current;
     // return OG tail
     return deletedNode;
+  }
 }
