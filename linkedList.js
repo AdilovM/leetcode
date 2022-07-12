@@ -1,12 +1,12 @@
-class LinkedListNode {
+class LinkedListNode{
   constructor(value, next = null) {
     this.value = value;
     this.next = next;
   }
-}
+};
 
 class LinkedList {
-  constructor() {
+  constructor(){
     this.head = null;
     this.tail = null;
   }
@@ -28,31 +28,7 @@ class LinkedList {
     } else {
       this.tail.next = newNode;
       this.tail = newNode;
-      return this;
-    }
-  }
-
-  delete(value) {
-    let deletedNode = null;
-    while(this.head && this.head.value === value) {
-      deletedNode = this.head;
-      this.head = this.head.next;
-    }
-    let current = this.head;
-    if(current) {
-      while(current.next) {
-        if(current.next.value === value) {
-          deletedNode = current.next;
-          current.next = current.next.next;
-        } else {
-          current = current.next;
-        }
-      }
-    }
-    if (this.tail && this.tail.value === value) {
-      this.tail = current;
-    }
-    return deletedNode;
+    } return this;
   }
 
   find(value) {
@@ -61,24 +37,48 @@ class LinkedList {
       while(current) {
         if(value !== undefined && current.value === value) {
           return current;
+        } current = current.next;
+      } return null;
+    }
+  }
+
+  delete(value) {
+    let current = this.head;
+    let deletedNode = null;
+    if(current) {
+      while(current.next) {
+        if(current.next.value === value) {
+          deletedNode = current.next;
+          current.next = current.next.next;
         }
         current = current.next;
       }
     }
-    return null;
+    return deletedNode;
   }
+
+  deleteTail(){
+    // no tail = empty LL
+    if(!this.tail) {
+      return null;
+    }
+    let deletedNode = this.tail;
+    // head = tail => one node
+    if(this.head === this.tail) {
+      return deletedNode;
+    }
+    let current = this.head;
+    while(current.next) {
+      // if one after the next node is null that means the current is the one before the last one
+      // point the new last node to null
+      if(!current.next.next) {
+        current.next = null;
+      } else {
+        current = current.next;
+      }
+    }
+    // point tail to current.
+    this.tail = current;
+    // return OG tail
+    return deletedNode;
 }
-
-// let n = new LinkedList();
-// n.prepend(5);
-// n.prepend(6);
-// n.append(7);
-// n.append(8);
-// // n.delete(7);
-// let temp = n.head;
-// while(temp) {
-//   console.log(temp.value);
-//   temp = temp.next;
-// }
-// console.log(n.find(7));
-
