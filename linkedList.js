@@ -1,28 +1,28 @@
 class LinkedListNode{
-  constructor(value, next = null) {
+  constructor(value, next = null){
     this.value = value;
     this.next = next;
   }
-};
+}
 
-class LinkedList {
+class LinkedList{
   constructor(){
     this.head = null;
     this.tail = null;
   }
 
-  prepend(value) {
+  prepend(value){
     let newNode = new LinkedListNode(value, this.head);
     this.head = newNode;
-    if(!this.tail) {
+    if(!this.tail){
       this.tail = newNode;
-    }
-    return this;
+    } return this;
   }
 
-  append(value) {
+  append(value){
     let newNode = new LinkedListNode(value);
-    if(!this.head || !this.tail) {
+    let currentNode = this.head;
+    if(!this.head || !this.tail){
       this.head = newNode;
       this.tail = newNode;
     } else {
@@ -31,111 +31,111 @@ class LinkedList {
     } return this;
   }
 
-  find(value) {
-    let current = this.head;
-    if(current) {
-      while(current) {
-        if(value !== undefined && current.value === value) {
-          return current;
-        } current = current.next;
-      } return null;
-    }
-  }
-
-  delete(value) {
-    let current = this.head;
-    let deletedNode = null;
-    if(current) {
-      while(current.next) {
-        if(current.next.value === value) {
-          deletedNode = current.next;
-          current.next = current.next.next;
-        }
-        current = current.next;
-      }
-    }
-    return deletedNode;
-  }
-
-  deleteTail(){
-    // no tail = empty LL
-    if(!this.tail) {
+  find(value){
+    if(value === undefined || !this.head) {
       return null;
-    }
-    let deletedNode = this.tail;
-    // head = tail => one node
-    if(this.head === this.tail) {
+    } else {
+      let currentNode = this.head;
+      while(currentNode){
+        if(currentNode.value === value){
+          return currentNode;
+        }
+        currentNode = currenNode.next;
+      }
+    } return null;
+  }
+
+  delete(value){
+    if(value === undefined || !this.head || !this.tail) {
+      return null;
+    } else {
+      let currentNode = this.head;
+      let deletedNode = null;
+      while(currentNode.next){
+        if(currentNode.next.value === value){
+          deletedNode = currentNode.next;
+          currentNode.next = currentNode.next.next;
+        }
+        currentNode = currentNode.next;
+      }
       return deletedNode;
     }
-    let current = this.head;
-    while(current.next) {
-      // if one after the next node is null that means the current is the one before the last one
-      // point the new last node to null
-      if(!current.next.next) {
-        current.next = null;
-      } else {
-        current = current.next;
-      }
-    }
-    // point tail to current.
-    this.tail = current;
-    // return OG tail
-    return deletedNode;
   }
 
   deleteHead(){
-    if(!this.head) {
+    if(!this.head){
       return null;
-    }
-    let deletedHead = this.head;
-    if(this.head.next) {
-      this.head = this.head.next;
     } else {
-      this.head = null;
-      this.tail = null;
+      let deletedHead = this.head;
+      if(!this.head.next) {
+        this.head = null;
+        this.tail = null;
+      } else {
+        this.head = this.head.next;
+      }
+      return deletedHead;
     }
-
-    return deletedHead;
   }
 
-  fromArray(values) {
+  deleteTail(){
+    if(!this.tail){
+      return null;
+    } else {
+      let deletedTail = this.tail;
+      if(this.head === this.tail) {
+        this.head = null;
+        this.tail = null;
+      } else {
+        let currentNode = this.head;
+        while(currentNode.next){
+          if(currentNode.next.next = null){
+            currentNode.next = null;
+          }
+          currentNode = currentNode.next;
+        }
+      }
+      return deletedNode;
+    }
+  }
+
+  fromArray(values){
     values.forEach(value => this.append(value));
-    return this;
   }
 
   toArray(){
     let nodes = [];
-    if(!this.head) {
+    if(!this.head){
       return nodes;
     } else {
-      let current = this.head;
-      while(current) {
-        nodes.push(current);
-        current = current.next;
+      let currentNode = this.head;
+      while(currentNode){
+        nodes.push(currentNode);
+        currentNode = currentNode.next;
       }
       return nodes;
     }
-    return nodes;
-  }
-
-  toString(cb) {
-    return this.toArray().map(node => node.toString(cb)).toString();
   }
 
   reverse(){
-    let current = this.head;
     let previousNode = null;
+    let currentNode = this.head;
     let nextNode = null;
 
-    while(current) {
-      nextNode = current.next;
-      current.next = previousNode;
-      previousNode = current;
-      current = nextNode;
-      this.head = this.tail;
-      this.head = previousNode;
+    while(currentNode){
+      //save currentNode.next
+      nextNode = currentNode.next;
 
-      return this;
+      // swap
+      currentNode.next = previous;
+      previous = currentNode;
+      // increment
+      currenNode = nextNode;
     }
+    // swap head and tail
+    this.tail = this.head;
+    // after while loop previousNode is the last node so we can assign it to this.head
+    this.head = previousNode;
+
+    return this;
   }
 }
