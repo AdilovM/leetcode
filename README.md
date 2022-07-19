@@ -1,2 +1,2 @@
-# leetcode
-leetcode problems I have solved.
+# DSA
+DS implementations and LC problems
