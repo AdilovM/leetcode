@@ -112,7 +112,7 @@ class LinkedList{
         nodes.push(currentNode);
         currentNode = currentNode.next;
       }
-      return nodes;
+      return null;
     }
   }
 
