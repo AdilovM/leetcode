@@ -56,3 +56,6 @@ nums[i] is either 0 or 1.
     }
     return globalMax
 };
+
+let testArr = [1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1];
+console.log(findMaxConsecutiveOnes(testArr));
