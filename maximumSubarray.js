@@ -14,5 +14,6 @@ const maxSubarray = (array, k) => {
     for(let j = 0; j < k; j++){
       currentSum = currentSum + arrayy[i + j];
     }
+    maxSum = max()
   }
 }

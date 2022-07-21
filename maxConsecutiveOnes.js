@@ -28,34 +28,52 @@ nums[i] is either 0 or 1.
  * @param {number[]} nums
  * @return {number}
  */
- var findMaxConsecutiveOnes = function(nums) {
-    let left = 0;
-    let right = 0;
-    let countOfZeroes = 0;
-    let globalMax = 0;
+//  var findMaxConsecutiveOnes = function(nums) {
+//     let left = 0;
+//     let right = 0;
+//     let countOfZeroes = 0;
+//     let globalMax = 0;
 
-    while(right < nums.length) {
+//     while(right < nums.length) {
 
-        if(nums[right] === 0){
-            countOfZeroes += 1;
-        }
+//         if(nums[right] === 0){
+//             countOfZeroes += 1;
+//         }
 
-        while(countOfZeroes === 1) {
-            globalMax = Math.max(globalMax, right - left);
+//         while(countOfZeroes === 1) {
+//             globalMax = Math.max(globalMax, right - left);
 
-            if(nums[left] === 0) {
-                countOfZeroes -= 1;
-            }
-            left += 1;
-        }
+//             if(nums[left] === 0) {
+//                 countOfZeroes -= 1;
+//             }
+//             left += 1;
+//         }
 
-        right += 1;
-    }
-    if (countOfZeroes < 1) {
-        globalMax = Math.max(globalMax, right-left)
-    }
-    return globalMax
+//         right += 1;
+//     }
+//     if (countOfZeroes < 1) {
+//         globalMax = Math.max(globalMax, right-left)
+//     }
+//     return globalMax
+// };
+
+// let testArr = [1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1];
+// console.log(findMaxConsecutiveOnes(testArr));
+var findMaxConsecutiveOnes = function(nums) {
+  let left = 0;
+  let right = 0;
+  let globalMax = 0;
+  while(right < nums.length) {
+    if(nums[right] !== 1){
+        globalMax = Math.max(globalMax, right - left);
+        left = right + 1;
+    };
+    right += 1;
+  };
+  globalMax = Math.max(globalMax, right - left);
+  return globalMax;
 };
 
 let testArr = [1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1];
 console.log(findMaxConsecutiveOnes(testArr));
+
