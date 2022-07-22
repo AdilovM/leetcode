@@ -62,16 +62,21 @@ nums[i] is either 0 or 1.
 var findMaxConsecutiveOnes = function(nums) {
   let left = 0;
   let right = 0;
-  let globalMax = 0;
+  let counterOfOnes = 0;
   while(right < nums.length) {
-    if(nums[right] !== 1){
-        globalMax = Math.max(globalMax, right - left);
-        left = right + 1;
+    if(nums[right] === 0){
+      // if current value is 0 shrink the window
+      /* whenever we shrink the window we update the global counterOfOnes by picking the largest
+      value between current counterOfOnes and current window length AKA distance beween right pointer and left pointer
+      */
+      counterOfOnes = Math.max(counterOfOnes, right - left);
+      left = right + 1;
     };
+    // expand the window
     right += 1;
   };
-  globalMax = Math.max(globalMax, right - left);
-  return globalMax;
+  counterOfOnes = Math.max(counterOfOnes, right - left);
+  return counterOfOnes;
 };
 
 let testArr = [1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1];
