@@ -22,7 +22,7 @@ class HashMap {
     return this.storage[hashedKey];
   }
 
-  inStorage(key){
+  includes(key){
     const hashedKey = this.getHash(key);
     return this.storage[hashedKey] != null;
   }
@@ -37,3 +37,4 @@ class HashMap {
 // testMap.set('foo', 5);
 // testMap.set('bar', 9);
 // console.log(testMap);
+
