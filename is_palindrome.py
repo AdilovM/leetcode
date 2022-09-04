@@ -19,7 +19,6 @@ def is_palindrome(x):
   while x >= 1:
     separate_digits.append(x % 10)
     x = int(x/10)
-  print(separate_digits)
   return rec(separate_digits)
 
 print(is_palindrome(11211))
