@@ -8,15 +8,13 @@ def romanToInt(s):
   'D': 500,
   'M': 1000
   }
-  result = 0
+  sum = 0
   for i in range(len(s) - 1):
       if mapping[s[i]] < mapping[s[i+1]]:
-          result -= mapping[s[i]]
+          sum -= mapping[s[i]]
       else:
-          result += mapping[s[i]]
-
-  result += mapping[s[-1]]
-
-  return result
+          sum += mapping[s[i]]
+  sum += mapping[s[-1]]
+  return sum
 print(romanToInt('MCMXCIV'))
 # 621 vs 421
