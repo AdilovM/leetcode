@@ -8,6 +8,7 @@ def is_valid(s):
   for ch in s:
     if ch not in closed:
       stack.append(ch)
+      print(stack)
     else:
       if not stack:
         return False
@@ -19,4 +20,4 @@ def is_valid(s):
   else:
     return True
 
-print(is_valid('()[][({({})})]'))
+print(is_valid('[({({})})]'))
