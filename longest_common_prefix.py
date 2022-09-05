@@ -1,14 +1,15 @@
 def longest_common_prefix(strs):
-  shortest = strs[0]
+  prefix = strs[0]
   i = 0
   while i < len(strs):
-    if shortest == strs[i][:len(shortest)]:
+    if prefix == strs[i][:len(prefix)]:
+      print(prefix)
       i += 1
     else:
-      shortest = shortest[:-1]
+      prefix = prefix[:-1]
       i = 0
-  return shortest
-print(longest_common_prefix(["flower","flow","flight", "flootersk","f"]))
+  return prefix
+print(longest_common_prefix(["flower","flow","flight", "flootersk"]))
 
 
 
