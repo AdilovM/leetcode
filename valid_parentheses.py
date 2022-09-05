@@ -19,4 +19,4 @@ def is_valid(s):
   else:
     return True
 
-print(is_valid('()[]'))
+print(is_valid('()[][({({})})]'))
