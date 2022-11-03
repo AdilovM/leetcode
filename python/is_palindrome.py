@@ -4,6 +4,7 @@ def is_palindrome(x):
     return True
   if x < 0:
     return False
+
   def rec(nums):
     if len(nums) == 1:
         return True
@@ -15,6 +16,7 @@ def is_palindrome(x):
         return False
     else:
         return False
+
   separate_digits = []
   while x >= 1:
     separate_digits.append(x % 10)
@@ -23,3 +25,6 @@ def is_palindrome(x):
   return rec(separate_digits)
 
 print(is_palindrome(11211))
+
+
+
